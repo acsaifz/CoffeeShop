@@ -31,6 +31,7 @@ public class Main {
 
         boolean run = true;
         while(run){
+            clrScreen();
             System.out.println("Kedves " + customer.getName() + "!");
             System.out.println("Válassz az alábbi menüből: ");
             System.out.println("Kávé vásárlás(v)");
@@ -46,6 +47,7 @@ public class Main {
                 case "f":
                     break;
                 case "j":
+                    clrScreen();
                     System.out.println(coffeeMachine.getRiport());
                     System.out.println("Folytatáshoz nyomja meg az [Enter] billentyűt");
                     scanner.nextLine();
@@ -55,6 +57,20 @@ public class Main {
                     break;
             }
 
+        }
+
+    }
+    public static void clrScreen(){
+        try{
+            final String os = System.getProperty("os.name");
+            System.out.println(os);
+            if (os.contains("Windows")){
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            }else{
+                new ProcessBuilder("sh", "-c", "clear").inheritIO().start().waitFor();
+            }
+        }catch(final Exception e){
+            e.printStackTrace();
         }
     }
 }
