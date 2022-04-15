@@ -5,9 +5,11 @@ public class CoffeeMachine {
     final static int COFFEE_TANK_SIZE = 1000; //g
     final static int MILK_POWDER_TANK_SIZE = 350; //g
     final static int CUP_CONTAINER_SIZE = 25; //pcs
+    final static int SUGAR_TANK_SIZE = 500; //g
     private int waterAmount;
     private int coffeeAmount;
     private int milkPowderAmount;
+    private int sugarAmount;
     private int cupAmount;
     private Coffee[] coffees;
     private int money = 0;
@@ -17,7 +19,16 @@ public class CoffeeMachine {
         this.coffeeAmount = COFFEE_TANK_SIZE;
         this.milkPowderAmount = MILK_POWDER_TANK_SIZE;
         this.cupAmount = CUP_CONTAINER_SIZE;
+        this.sugarAmount = SUGAR_TANK_SIZE;
         this.coffees = coffees;
+    }
+
+    public String getRiport(){
+        return "Víz mennyiség: " + waterAmount + "ml\n" +
+                "Kávé mennyiség: " + coffeeAmount + "g\n" +
+                "Tejpor mennyiség: " + milkPowderAmount + "g\n" +
+                "Cukor mennyiség: " + sugarAmount + "g\n" +
+                "Pohár mennyiség: " + cupAmount + "db\n";
     }
 
     public void setWaterAmount(int waterAmount) {
@@ -44,6 +55,14 @@ public class CoffeeMachine {
         return milkPowderAmount;
     }
 
+    public void setSugarAmount(int sugarAmount){
+        this.sugarAmount = sugarAmount;
+    }
+
+    public int getSugarAmount(){
+        return  sugarAmount;
+    }
+
     public void setCupAmount(int cupAmount){
         this.cupAmount = cupAmount;
     }
@@ -67,6 +86,7 @@ public class CoffeeMachine {
     public int getMoney(){
         return money;
     }
+
 
 
 }
