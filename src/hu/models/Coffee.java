@@ -19,7 +19,6 @@ public class Coffee {
     public Coffee(String name, int water, int milk, int coffee, int sugar, int price){
         this(name,water,coffee,sugar,price);
         this.milk = milk;
-        this.sugar = sugar;
         this.price = price;
     }
 
