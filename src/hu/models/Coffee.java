@@ -8,11 +8,17 @@ public class Coffee {
     private int sugar;
     private int price;
 
-    public Coffee(String name, int water, int milk, int coffee, int sugar, int price){
+    public Coffee(String name, int water, int coffee, int sugar, int price){
         this.name = name;
         this.water = water;
-        this.milk = milk;
         this.coffee = coffee;
+        this.sugar = sugar;
+        this.price = price;
+    }
+
+    public Coffee(String name, int water, int milk, int coffee, int sugar, int price){
+        this(name,water,coffee,sugar,price);
+        this.milk = milk;
         this.sugar = sugar;
         this.price = price;
     }
