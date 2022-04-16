@@ -80,6 +80,12 @@ public class Main {
                     }while (!coffeeChoice.equals("x"));
                     break;
                 case "f":
+                    clrScreen();
+                    System.out.println("----------------------------------------");
+                    coffeeMachine.refill();
+                    System.out.println("----------------------------------------");
+                    System.out.print("Folytatáshoz nyomja meg az [Enter] billentyűt");
+                    scanner.nextLine();
                     break;
                 case "j":
                     clrScreen();
