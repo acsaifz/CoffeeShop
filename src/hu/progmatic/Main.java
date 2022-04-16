@@ -3,7 +3,6 @@ package hu.progmatic;
 import hu.models.Coffee;
 import hu.models.CoffeeMachine;
 import hu.models.Customer;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -21,11 +20,10 @@ public class Main {
         };
 
         CoffeeMachine coffeeMachine = new CoffeeMachine(coffees);
-
-        System.out.println("Add meg a neved: ");
+        System.out.print("Add meg a neved: ");
         String name = scanner.nextLine();
 
-        System.out.println("Add meg mennyi pénz van nálad(Ft): ");
+        System.out.print("Add meg mennyi pénz van nálad(Ft): ");
         int money = 0;
         while (money == 0){
             try{
@@ -33,12 +31,12 @@ public class Main {
             }catch(InputMismatchException e){
                 scanner.nextLine();
                 System.out.println("Hiba! Csak számot adhatsz meg!");
-                System.out.println("Add meg mennyi pénz van nálad(Ft): ");
+                System.out.print("Add meg mennyi pénz van nálad(Ft): ");
                 continue;
             }
             if (money==0){
                 System.out.println("Hiba! Nem vehetsz kávét 0 Ft-ból!");
-                System.out.println("Add meg mennyi pénz van nálad(Ft): ");
+                System.out.print("Add meg mennyi pénz van nálad(Ft): ");
             }
         }
 
@@ -47,24 +45,46 @@ public class Main {
         boolean run = true;
         while(run){
             clrScreen();
+            System.out.println("----------------------------------------");
             System.out.println("Kedves " + customer.getName() + "!");
-            System.out.println("Válassz az alábbi menüből: ");
-            System.out.println("Kávé vásárlás(v)");
-            System.out.println("Kávégép feltöltése(f)");
-            System.out.println("Kávégép állapot jelentés(j)");
-            System.out.println("Kilépés(x)");
-
+            System.out.println("----------------------------------------");
+            System.out.println("(v) Kávé vásárlás");
+            System.out.println("(f) Kávégép feltöltése");
+            System.out.println("(j) Kávégép állapot jelentés");
+            System.out.println("(x) Kilépés");
+            System.out.println("----------------------------------------");
+            System.out.print("Válassz egyet a felsorolásból: ");
             String choice = scanner.nextLine();
 
             switch(choice.toLowerCase()){
                 case "v":
+                    String coffeeChoice;
+                    do{
+                        clrScreen();
+                        coffeeMachine.printCoffeeMenu();
+                        System.out.println("(x) Visszalépés a főmenübe");
+                        System.out.println("----------------------------------------");
+                        System.out.print("Válassz egyet a felsorolásból: ");
+                        coffeeChoice = scanner.nextLine();
+                        try{
+                            int coffeeId = Integer.parseInt(coffeeChoice);
+                            if (coffeeId <= coffeeMachine.getCoffees().length && coffeeId >= 0){
+                                coffeeMachine.buyCoffee(coffeeId,customer);
+                                System.out.print("Folytatáshoz nyomja meg az [Enter] billentyűt");
+                                scanner.nextLine();
+                                break;
+                            }
+                        }catch(NumberFormatException e){
+                            //Do nothing
+                        }
+                    }while (!coffeeChoice.equals("x"));
                     break;
                 case "f":
                     break;
                 case "j":
                     clrScreen();
                     System.out.println(coffeeMachine.getRiport());
-                    System.out.println("Folytatáshoz nyomja meg az [Enter] billentyűt");
+                    System.out.print("Folytatáshoz nyomja meg az [Enter] billentyűt");
                     scanner.nextLine();
                     break;
                 case "x":
