@@ -33,6 +33,7 @@ public class CoffeeMachine {
                 "Tejpor mennyiség: " + milkPowderAmount + "g\n" +
                 "Cukor mennyiség: " + sugarAmount + "g\n" +
                 "Pohár mennyiség: " + cupAmount + "db\n" +
+                "Profit: " + money + " Ft\n" +
                 "----------------------------------------";
     }
 
@@ -64,12 +65,30 @@ public class CoffeeMachine {
             milkPowderAmount -= coffees[id].getMilk();
             sugarAmount -= coffees[id].getSugar();
             cupAmount--;
+            money += coffees[id].getPrice();
 
             customer.setMoney(customer.getMoney()-coffees[id].getPrice());
 
             System.out.println("Sikeres vásárlás! Maradt " + customer.getMoney() + "Ft-od.");
         }else
             System.out.println("Nincs elég alapanyag, töltsd fel a gépet!");
+    }
+
+    public void refill(){
+        if (waterAmount == WATER_TANK_SIZE &&
+                coffeeAmount == COFFEE_TANK_SIZE &&
+                milkPowderAmount == MILK_POWDER_TANK_SIZE &&
+                sugarAmount == SUGAR_TANK_SIZE &&
+                cupAmount == CUP_CONTAINER_SIZE){
+            System.out.println("Hiba! A kávégép tele van, nem tudod újratölteni!");
+        }else{
+            waterAmount = WATER_TANK_SIZE;
+            coffeeAmount = COFFEE_TANK_SIZE;
+            milkPowderAmount = MILK_POWDER_TANK_SIZE;
+            sugarAmount = SUGAR_TANK_SIZE;
+            cupAmount = CUP_CONTAINER_SIZE;
+            System.out.println("Kávégép sikeresen feltöltve!");
+        }
     }
 
     public void setWaterAmount(int waterAmount) {
