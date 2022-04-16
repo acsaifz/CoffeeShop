@@ -4,6 +4,7 @@ import hu.models.Coffee;
 import hu.models.CoffeeMachine;
 import hu.models.Customer;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -25,7 +26,21 @@ public class Main {
         String name = scanner.nextLine();
 
         System.out.println("Add meg mennyi pénz van nálad(Ft): ");
-        int money = scanner.nextInt(); scanner.nextLine();
+        int money = 0;
+        while (money == 0){
+            try{
+                money = scanner.nextInt(); scanner.nextLine();
+            }catch(InputMismatchException e){
+                scanner.nextLine();
+                System.out.println("Hiba! Csak számot adhatsz meg!");
+                System.out.println("Add meg mennyi pénz van nálad(Ft): ");
+                continue;
+            }
+            if (money==0){
+                System.out.println("Hiba! Nem vehetsz kávét 0 Ft-ból!");
+                System.out.println("Add meg mennyi pénz van nálad(Ft): ");
+            }
+        }
 
         Customer customer = new Customer(name,money);
 
@@ -63,13 +78,12 @@ public class Main {
     public static void clrScreen(){
         try{
             final String os = System.getProperty("os.name");
-            System.out.println(os);
             if (os.contains("Windows")){
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
             }else{
                 new ProcessBuilder("sh", "-c", "clear").inheritIO().start().waitFor();
             }
-        }catch(final Exception e){
+        }catch(Exception e){
             e.printStackTrace();
         }
     }
