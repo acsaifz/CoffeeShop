@@ -20,6 +20,8 @@ public class Main {
         };
 
         CoffeeMachine coffeeMachine = new CoffeeMachine(coffees);
+
+        clrScreen();
         System.out.print("Add meg a neved: ");
         String name = scanner.nextLine();
 
