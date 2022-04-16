@@ -24,11 +24,26 @@ public class CoffeeMachine {
     }
 
     public String getRiport(){
-        return "Víz mennyiség: " + waterAmount + "ml\n" +
+
+        return "----------------------------------------\n" +
+                "Kávégép állapot jelentés:\n" +
+                "----------------------------------------\n" +
+                "Víz mennyiség: " + waterAmount + "ml\n" +
                 "Kávé mennyiség: " + coffeeAmount + "g\n" +
                 "Tejpor mennyiség: " + milkPowderAmount + "g\n" +
                 "Cukor mennyiség: " + sugarAmount + "g\n" +
-                "Pohár mennyiség: " + cupAmount + "db\n";
+                "Pohár mennyiség: " + cupAmount + "db\n" +
+                "----------------------------------------";
+    }
+
+    public void printCoffeeMenu(){
+        int counter = 0;
+        System.out.println("----------------------------------------");
+        System.out.println("Kávé menülap: ");
+        System.out.println("----------------------------------------");
+        for (Coffee coffee: coffees) {
+            System.out.println("(" + counter++ + ") " + coffee.getName() + "\tÁr: " + coffee.getPrice() + " Ft");
+        }
     }
 
     public void setWaterAmount(int waterAmount) {
