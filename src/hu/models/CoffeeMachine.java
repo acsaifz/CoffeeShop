@@ -46,6 +46,32 @@ public class CoffeeMachine {
         }
     }
 
+    public void buyCoffee(int id, Customer customer){
+        if (coffees[id].getPrice() > customer.getMoney()){
+            System.out.println("Hiba! Nincs elég pénzed a kávé megvásárlásához!");
+            System.out.println("Kávé ára: " + coffees[id].getPrice() + " Ft");
+            System.out.println("Ennyi pénzed van: " + customer.getMoney() + "Ft");
+            return;
+        }
+
+        if (waterAmount >= coffees[id].getWater() &&
+                coffeeAmount >= coffees[id].getCoffee() &&
+                milkPowderAmount >= coffees[id].getMilk() &&
+                sugarAmount >= coffees[id].getSugar() &&
+                cupAmount > 0){
+            waterAmount -= coffees[id].getWater();
+            coffeeAmount -= coffees[id].getCoffee();
+            milkPowderAmount -= coffees[id].getMilk();
+            sugarAmount -= coffees[id].getSugar();
+            cupAmount--;
+
+            customer.setMoney(customer.getMoney()-coffees[id].getPrice());
+
+            System.out.println("Sikeres vásárlás! Maradt " + customer.getMoney() + "Ft-od.");
+        }else
+            System.out.println("Nincs elég alapanyag, töltsd fel a gépet!");
+    }
+
     public void setWaterAmount(int waterAmount) {
         this.waterAmount = waterAmount;
     }
